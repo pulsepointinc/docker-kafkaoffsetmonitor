@@ -1,8 +1,21 @@
 #!/bin/bash
 
-exec java -cp /kafkaoffsetmonitor/KafkaOffsetMonitor.jar \
+ZK_HOSTS=${ZK_HOSTS:-localhost:2181}
+
+PORT=${PORT:-8080}
+REFRESH_SECONDS=${REFRESH_SECONDS:-10}
+RETAIN_DAYS=${RETAIN_DAYS:-2}
+
+GRAPHITE_HOST=${GRAPHITE_HOST:-localhost}
+GRAPHITE_PORT=${GRAPHITE_PORT:-2003}
+GRAPHITE_PREFIX=${GRAPHITE_PREFIX:-stats.kafka.offset_monitor}
+
+PLUGIN_ARGS=${PLUGIN_ARGS:-graphiteHost=${GRAPHITE_HOST},graphitePort=${GRAPHITE_PORT},graphitePrefix=${GRAPHITE_PREFIX}}
+
+exec java -cp "/cp/*" \
   com.quantifind.kafka.offsetapp.OffsetGetterWeb \
-  --zk ${ZK_HOSTS:-localhost:2181} \
-  --port ${PORT:-8080} \
-  --refresh ${REFRESH_SECONDS:-10}.seconds \
-  --retain ${RETAIN_DAYS:-2}.days
+  --zk ${ZK_HOSTS} \
+  --port ${PORT} \
+  --refresh ${REFRESH_SECONDS}.seconds \
+  --retain ${RETAIN_DAYS}.days \
+  --pluginsArgs ${PLUGIN_ARGS}

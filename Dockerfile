@@ -4,7 +4,7 @@ RUN yum install -y java-1.8.0-openjdk-headless && yum clean all
 
 ENV \
   KOM_CHECKOUT=c9993a5aeb701c08bf679f3ca9e27e5678b62629 \
-  KOMG_CHECKOUT=09fa51d9e50f764143e9377300457fd50e2014c7
+  KOMG_CHECKOUT=b5a96c64cabb855cf0723e0cb2dde41fa677fbf0
 
 RUN curl -o /etc/yum.repos.d/bintray-sbt-rpm.repo \
   https://bintray.com/sbt/rpm/rpm && \

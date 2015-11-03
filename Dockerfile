@@ -16,7 +16,7 @@ RUN curl -o /etc/yum.repos.d/bintray-sbt-rpm.repo \
   git clone https://github.com/allegro/kafka-offset-monitor-graphite.git /tmp/kafkaoffsetmonitorgraphite && \
   cd /tmp/kafkaoffsetmonitorgraphite && \
   git checkout ${KOMG_CHECKOUT} && \
-  sbt assembly && \
+  sbt "set test in Test := {}" assembly && \
   cp target/scala-*/*.jar /cp && \
   yum autoremove -y git sbt && \
   yum clean all && \

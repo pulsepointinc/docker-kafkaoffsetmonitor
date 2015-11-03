@@ -1,6 +1,4 @@
-FROM centos:7
-
-RUN yum install -y java-1.8.0-openjdk-headless && yum clean all
+FROM pulsepointinc/centos7-java8:latest
 
 ENV \
   KOM_CHECKOUT=c9993a5aeb701c08bf679f3ca9e27e5678b62629 \
